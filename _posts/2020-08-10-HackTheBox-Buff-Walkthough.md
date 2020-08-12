@@ -10,9 +10,10 @@ comments: true
 
 ## Introduction
 
+Buff is a machine on [HackTheBox](https://www.hackthebox.eu/) platform with the IP address 10.10.10.198. The machine is vulnerable to multiple CVE which are easy to find. The machine has been rated Easy by the community. When I wrote this walkthrough, Buff wasn't retired yet. Please don't cheat and solve the box by yourself if you didn't get root flag. The purpose of HacktTheBox is to learn and trying by yourself is the best way to do it.
+
 ![info_cart.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/3da2ee768f774733bb773b4d7ce5b828.png)
 
-Buff is a machine on [HackTheBox](https://www.hackthebox.eu/) platform with the IP address 10.10.10.198. The machine is vulnerable to multiple CVE which are easy to find. The machine has been rated Easy by the community. When I wrote this walkthrough, Buff wasn't retired yet. Please don't cheat and solve the box by yourself if you didn't get root flag. The purpose of HacktTheBox is to learn and trying by yourself is the best way to do it.
 
 ## Post scan
 Well, it started with several nmap scan to enumerate ports.

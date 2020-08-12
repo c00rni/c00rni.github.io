@@ -9,10 +9,9 @@ comments: true
 ---
 
 
-![info_card.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/7868506449fe4aaa86c8dfddc6a0e7df.png)
-
-
 SneakyMailer is a HackTheBox machine with the ip address 10.10.10.197. It's a Linux machine rated as medium by the community. As you probably already guessed this box, has something to do with mail. I enumerate and created a custom script to get a foothold on the machine. The server runs a Pypi server which allowed me to get a user account and the privilege escalation was pretty straight forward because the user can execute some vulnerable commands as root.
+
+![info_card.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/7868506449fe4aaa86c8dfddc6a0e7df.png)
 
 Like always I start by port scanning.
 
@@ -188,8 +187,9 @@ sudo pip3 install $TF
 This is how is rooted SneakyMailer machine. I got stuck multiple time on this machine but learn stuff on the way. Thanks for reading this walkthrough.
 
 # References 
-https://diveintopython3.problemsolving.io/files.html
-https://pypi.org/project/pypiserver/#uploading-packages-remotely
-https://gtfobins.github.io/gtfobins/pip/#sudo
-https://packaging.python.org/tutorials/packaging-projects/
-http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+- [https://diveintopython3.problemsolving.io/files.html](https://diveintopython3.problemsolving.io/files.html)
+- [https://pypi.org/project/pypiserver/#uploading-packages-remotely](https://pypi.org/project/pypiserver/#uploading-packages-remotely)
+- [https://gtfobins.github.io/gtfobins/pip/#sudo](https://gtfobins.github.io/gtfobins/pip/#sudo)
+- [https://packaging.python.org/tutorials/packaging-projects/](https://packaging.python.org/tutorials/packaging-projects/)
+- [http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
+
