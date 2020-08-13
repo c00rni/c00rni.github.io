@@ -11,7 +11,7 @@ author: Antony Gandonou migan
 
 # --- List of links in the navigation bar --- #
 
-navbar-links
+navbar-links:
   Home: "https://c00rni.github.io"
   About Me: "aboutme"
   Resources:
