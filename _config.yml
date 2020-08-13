@@ -11,12 +11,13 @@ author: Antony Gandonou migan
 
 # --- List of links in the navigation bar --- #
 
-navbar-links:
+navbar-links
+  Home: "https://c00rni.github.io":
   About Me: "aboutme"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
 #    - Learn markdown: "https://www.markdowntutorial.com/"
-  Home: "https://c00rni.github.io"
+  CV: "resume"
 
 # --- Logo --- #
 
