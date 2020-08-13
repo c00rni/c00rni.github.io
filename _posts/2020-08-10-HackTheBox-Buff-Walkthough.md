@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HackTheBox Buff walktthrough
-subtitle: First infosec blog post
+[comment]: <> (subtitle: First infosec blog post)
 gh-repo: c00rni/c00rni.github.io
 gh-badge: [star, fork, follow]
 tags: [enumeration, hackthebox, netcat, plink, powershell, windows, msfvenom]

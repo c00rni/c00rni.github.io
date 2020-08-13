@@ -1,16 +1,11 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Antony, and I am a Computer Network Engineer graduate and a self taught information security enthusiast. I'm particularly interested in web application hacking and Bug bounties. I created this blog to share my journey in the cybersecurity community.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+I'm addicted to combat sports and a highly active association member of Brazilian Jiu Jitsu.
 
-What else do you need?
+I'm currently in search of a Pentester job opportunity. You can [*email me*](mailto:gmigan.a @gmail.com) or find me on [*Linkedin*](https://www.linkedin.com/in/antony-gandonou-migan/) if you want to get in touch.
 
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
