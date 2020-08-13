@@ -12,7 +12,7 @@ author: Antony Gandonou migan
 # --- List of links in the navigation bar --- #
 
 navbar-links
-  Home: "https://c00rni.github.io":
+  Home: "https://c00rni.github.io"
   About Me: "aboutme"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
