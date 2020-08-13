@@ -1,7 +1,6 @@
 ---
 layout: post
 title: HackTheBox SneakyMailer walktthrough
-[comment]: <> (subtitle: Find the clicker)
 gh-repo: c00rni/c00rni.github.io
 gh-badge: [star, fork, follow]
 tags: [enumeration, hackthebox, ssh, pypi, smtp, linux]
