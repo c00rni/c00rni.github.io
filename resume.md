@@ -13,8 +13,6 @@ Security network engineer graduate with a strong interest in ethical hacking, we
 - Experence with security tools, such as Kali Linux, Metaexploit, and Burp suit pro.
 - Proeficient in translating information from technical to executive management technology
 
-[antony.gandonou_migan@protonmail.com](antony.gandonou_migan@protonmail.com)
-
 # Education
 
 **Université de technologie de Troyes,**  
@@ -26,7 +24,7 @@ Security network engineer graduate with a strong interest in ethical hacking, we
 
 # Experiences
 
-**Société Générale**, Montréal, Canada (August 2019 to Feburary 2020)  
+**Société Générale**, Montréal, Canada (August 2019 to February 2020)  
 Security officer trainee
 
 - Conducted penetration test against virtualized live systems to determine the current system/network vulnerabilities and help apply appropriate patching.
@@ -61,7 +59,7 @@ Security officer trainee
 # Volunteerism
 
 **Cyber Patriot**
-- Explain cybersecurity challenges to enterprises and strengthen the bond between the army and the civilians.
+- Popularize cybersecurity challenges and strengthen the bond between the army and the civilians.
 
 **Brazilian jiu-jitsu Association**  
 - Active member of GTA - Brazilian Jiu Jistu association of Troyes.
@@ -69,3 +67,4 @@ Security officer trainee
 **Junior enterprise**
 - Be the link between university student and enterprises.
 
+Mail:[antony.gandonou_migan@protonmail.com](mailto:antony.gandonou_migan@protonmail.com) | [Download CV as a PDF](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/docs/CV-eng-antony_gandonou_migan.pdf)

