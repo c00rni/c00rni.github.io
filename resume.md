@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Resume
-subtitle: Or: why you dont have to search anymore 
+subtitle: "Or: why you dont have to search anymore"
 ---
 
 # Summary
