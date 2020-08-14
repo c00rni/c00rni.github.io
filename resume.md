@@ -3,6 +3,7 @@ layout: page
 title: Resume
 subtitle: Or: why you dont have to search anymore 
 ---
+
 [antony.gandonou_migan@protonmail.com](antony.gandonou_migan@protonmail.com)
 # Summary
 
