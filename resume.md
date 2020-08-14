@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Resume
-subtitle: or why you should hire me
+subtitle: Or: why you dont have to search anymore 
 ---
-
+[antony.gandonou_migan@protonmail.com](antony.gandonou_migan@protonmail.com)
 # Summary
 
 Security network engineer graduate with a strong interest in ethical hacking, web application hacking, penetration testing and network security. Hard-working, energetic and technical-minded individual. Possess good communication skills in French and English and a strong ability to resolve issues quickly.
