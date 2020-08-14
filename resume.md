@@ -15,7 +15,7 @@ Security network engineer graduate with a strong interest in ethical hacking, we
 
 [antony.gandonou_migan@protonmail.com](antony.gandonou_migan@protonmail.com)
 
-# Educaiton
+# Education
 
 **Université de technologie de Troyes,**  
 *Master, Computer Network security*
