@@ -165,11 +165,11 @@ Used my private key with ssh and logged as low.
 
 ![low_sell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/840842eb48374a1a8bbb40408619d8cf.png)
 
-The first thing I did after I got low user were to check if I got sudoers rights.
+The first thing I did after I got `low` user were to check if I got sudoers rights.
 
 ![sudo_right.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/37f1f2d3043f48508601778871f9049e.png)
 
-Run in a privilege context pip can be used to access the file system, escalate users privileges (see [GTFObins](https://gtfobins.github.io/gtfobins/pip/#sudo)).
+Run in a privilege context pip can be used to access the file system and escalate users privileges (see [GTFObins](https://gtfobins.github.io/gtfobins/pip/#sudo)).
 
 ```bash
 TF=$(mktemp -d)
