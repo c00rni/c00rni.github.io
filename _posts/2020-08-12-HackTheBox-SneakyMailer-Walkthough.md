@@ -97,7 +97,7 @@ From there I knew how to get access to higher privileged accounts. I knew from p
 
 ![ps_result.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/2c1acf17a2a74add9cc75bc33fbffab4.png)
 
-The root directory of www-data contained a `.htpasswd` file. I found the clair text of the hash with john.
+The root directory of www-data contained a `.htpasswd` file. I found the clair text of the hash using **John The Ripper**.
 
 
 ![pypi_creds.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/def382be16f54c4381dedcace2956941.png)

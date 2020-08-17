@@ -50,7 +50,7 @@ mkdir site-backups
 sudo mount -o nolock 10.10.10.180:/site-backups $PWD/site-backups
 ```
 
-Found the file Umbraco database in a compact file format ([SDF](https://fileinfo.com/extension/sdf)). *This was the most tricky part in my opinion, things could become difficult without the knowledge of this file format*.
+Found the Umbraco database in a compact file format ([SDF](https://fileinfo.com/extension/sdf)). *This was the most tricky part in my opinion, things could have become difficult without the knowledge of this file format*.
 
 ![found_umbraco.sdf.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8e6c12f1220145e49ab23e099404e464.png)
 
