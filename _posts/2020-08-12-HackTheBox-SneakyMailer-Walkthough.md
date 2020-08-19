@@ -3,7 +3,7 @@ layout: post
 title: HackTheBox SneakyMailer walkthrough
 gh-repo: c00rni/c00rni.github.io
 gh-badge: [star, fork, follow]
-tags: [enumeration, hackthebox, ssh, pypi, smtp, linux]
+tags: [enumeration, hackthebox, ssh, pypi, smtp, linux, php]
 comments: true
 ---
 

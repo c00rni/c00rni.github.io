@@ -67,7 +67,7 @@ password: baconandcheese
 
 # Foothold
 
-I found Umbraco CMS verson with `grep -iR "7.12.4"`. This version were vulnerable to an [authenticated remote code execution](https://www.exploit-db.com/exploits/46153) so I downloaded [noraj Umbraco POC](https://github.com/noraj/Umbraco-RCE). Since I didn't know what was the privileges of the user I was exploiting I executed the `powercat.ps1` script without saving the file on the remote file system by combining the **DownloadString** methode with the Invoke-Expression cmdlet ([**IEX**](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression?view=powershell-6)).
+I found Umbraco CMS verson with `grep -iR "7.12.4"`. This version were vulnerable to an [authenticated remote code execution](https://www.exploit-db.com/exploits/46153) so I downloaded [noraj Umbraco POC](https://github.com/noraj/Umbraco-RCE). Since I didn't know what was the privileges of the user I was exploiting I executed the `powercat.ps1` script without saving the file on the remote file system by combining the **DownloadString** methode with the **Invoke-Expression** cmdlet ([IEX](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression?view=powershell-6)).
 
 Listen for connections:
 ```bash
