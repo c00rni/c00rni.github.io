@@ -25,7 +25,7 @@ I started with multiple port scans.
 
 A lot of ports were opened and the enumeration phase can be very time consuming in a penetration test. In order to manage my time efficiently, I spent no longer than 30 minutes on each port and focus my attention in this order:
 - Port 80/5985/47001 because they are webservers.
-- Port 21, Anonymous login is allowed I might be to upload or download files.
+- Port 21, Anonymous login is allowed, I might be able to upload or download files.
 - Port 111/2049 NFS is insecure by design and drives are mounted.
 - Port 445 - Samba or SMB can provide very useful information but I need credentials to log in.
 - Other ports ...
