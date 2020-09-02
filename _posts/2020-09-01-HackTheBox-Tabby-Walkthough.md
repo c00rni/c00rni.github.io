@@ -8,7 +8,7 @@ comments: true
 ---
 
 
-This is a write up about 'Tabby' box from HackThebox. The machine is rated as easy by the community and CVE oriented. I exploited a Local File Inclusion (LFI) vulnerability to get the admin web server credentials, used those credentials to upload a war file and get remote code execution. I found the password of a backup file, logged myself as user 'ash' with it and exploit a 'lxd' privilege escalation vulnerability to get full control of the machine.
+This is a write up about 'Tabby' box from HackThebox. Tabby machine have the ip address 10.10.10.194 and is rated as easy by the community. I exploited a Local File Inclusion (LFI) vulnerability to get the admin web server credentials, used those credentials to upload a war file and get remote code execution. I found the password of a backup file, logged myself as user 'ash' with it and exploit a 'lxd' privilege escalation vulnerability to get full control of the machine.
 
 
 ![into_card.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8ef266cc2812400c8683218347a1d3fc.png)
