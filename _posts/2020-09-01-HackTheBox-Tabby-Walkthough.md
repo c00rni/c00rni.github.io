@@ -109,7 +109,7 @@ I SSH into the box as root and got a shell.
 I like realistic box and this box is definitely one of them. I learned a lot about tomcat and lxd privilege root escalation.
 
 # References
-[Local File Inclusion](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.1-Testing_for_Local_File_Inclusion)
-[lxd privilege escalation exploit](https://www.exploit-db.com/exploits/46978)
-[Automated Enumaration linux tool](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
-[Tomcat 9 remote deploy documentation](http://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html#Deploy_A_New_Application_Archive_(WAR)_Remotely)
+- [Local File Inclusion](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.1-Testing_for_Local_File_Inclusion)
+- [lxd privilege escalation exploit](https://www.exploit-db.com/exploits/46978)
+- [Automated Enumaration linux tool](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
+- [Tomcat 9 remote deploy documentation](http://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html#Deploy_A_New_Application_Archive_(WAR)_Remotely)
