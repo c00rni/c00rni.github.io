@@ -49,7 +49,7 @@ I googled "Gym management Software 1.0" for exploits and get an unauthenticated 
 
 ![shaun_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/6c57f1e511e74ee5ad430fe7597fe642.png)
 
-Now I can execute command on the server as user Shaun but it's not really convenient because I don't have proper shell. Shaun is an unprivileged user and I need to get an Administrator account to fully control the machine. The next step would be to enumerate the machine to find a way to elevate my privilege but let's get a shell first.
+Now I can execute command on the server as user Shaun but it's not really convenient because I don't have a proper shell. Shaun is an unprivileged user and I need to get an Administrator account to fully control the machine. The next step would be to enumerate the machine to find a way to elevate my privilege but let's get a shell first.
 
 ### Upload files 
 
