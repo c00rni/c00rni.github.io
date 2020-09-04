@@ -10,7 +10,7 @@ Security network engineer graduate with a strong interest in ethical hacking, we
 
 - Experience in scripting languages including Python and Bash.
 - Excelent task management , ability to handle multiple projects simultaneously.
-- Experence with security tools, such as Kali Linux, Metaexploit, and Burp suit pro.
+- Experence with security tools, such as Kali Linux, Metaexploit, and Burp suit.
 - Proeficient in translating information from technical to executive management technology
 
 # Education

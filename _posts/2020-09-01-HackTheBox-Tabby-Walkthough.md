@@ -102,7 +102,7 @@ chmod +x 46978.sh
 
 ![root_container.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/014af8c4a7fd4c54a6b4895471d07390.png)
 
-The file system of Tabby is accessible from `/mnt/root/` and I could make any modification on the box since were root on the container. I created a pair of SSH key with `ssh-keygen` command and copy to content of the public key into `/mnt/root/.ssh/authorized_keys` file. 
+The file system of Tabby is accessible from `/mnt/root/` and I could make any modification on the box since I were root on the container. I created a pair of SSH key with `ssh-keygen` command and copy to content of the public key into `/mnt/root/.ssh/authorized_keys` file. 
 
 I SSH into the box as root with the priviate key and got a shell.
 
@@ -113,7 +113,8 @@ I like realistic box and this box is definitely one of them. I learned a lot abo
 
 # References
 - [Local File Inclusion](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.1-Testing_for_Local_File_Inclusion)
-- [lxd privilege escalation exploit](https://www.exploit-db.com/exploits/46978)
+- [LXD privilege escalation exploit](https://www.exploit-db.com/exploits/46978)
+- [LXD vulnerabiliy explain in deth](https://shenaniganslabs.io/2019/05/21/LXD-LPE.html)
 - [Automated Enumaration linux tool](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
 - [Tomcat 9 remote deploy documentation](http://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html#Deploy_A_New_Application_Archive_(WAR)_Remotely)
 - [John the ripper](https://www.openwall.com/john/)
