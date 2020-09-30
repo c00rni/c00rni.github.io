@@ -307,14 +307,13 @@ I used ssh to get luffy shell.
 
 Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers.
 
-Docker runs with the SUID bit set. This allow any user who can run the program to execute actions with the highest privileges on the machine. Therefore it's a vulnerability to add any normal user to docker's group.
+Docker runs with the SUID bit set. This allow any user who can run the program to execute actions with the highest privileges on the machine. Therefore it's a vulnerability to add any normal user to docker's group since they could execute systems command and elevate they privileges.
 
-Since luffy is a group member of docker and an ubuntu container image is on the machine. I ran the command below to elevate my privilege to root user.
+Cache has an ubuntu container and luffy is part of docker group so I ran the command below to elevate my privilege to root user.
 
 ```bash
 docker run -it -v /:/mnt ubuntu chroot /mnt sh
 ```
-
 
 Thanks for reading !
 
