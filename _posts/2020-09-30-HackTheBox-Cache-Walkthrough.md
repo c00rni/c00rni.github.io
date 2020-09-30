@@ -31,7 +31,7 @@ The author wrote:
 
 *ASH is a Security Researcher (Threat Research Labs), Security Engineer. Hacker, Penetration Tester and Security blogger. He is Editor-in-Chief, Author & Creator of Cache. Check out his other projects like Cache: HMS(Hospital Management System)* 
 
-I knew Ash used the domain name `cache.htb` for his website and might have some other project host under the same top-level domain (htb).
+The index page hinted us Ash used the domain name `cache.htb` for his website and might have some other project host under the same top-level domain (htb).
 
 Add the domain names `hms.htb` to the system hosts file (`/etc/hosts`) to access HMS(Hospital Management System) project.
 
