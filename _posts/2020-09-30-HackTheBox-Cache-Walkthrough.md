@@ -1,5 +1,3 @@
-HackTheBox Cache detail walkthrought
-
 ---
 layout: post
 title: HackTheBox Cache walkthrough
@@ -12,24 +10,24 @@ comments: true
 Cache is a machine on HackTheBox platoform with the IP address 10.10.10.188. This machine is rated as medium by the community. As long each enueration phase was done conscientiously, this machine is fun and easy. Cache is vulnerable to multiple CVE; The first one being a sql injection wich allow me to get credential and execute a remote code execution exploit. The first normal user credential can be found in Javascript files. Credential of a second user can be found in memecache service memor and I used docker to elevate my privelege to root.	
 
 
-![card_info.png](../../_resources/cfb7b7394bdd494aa4d8bcfa47f7b556.png)
+![card_info.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/cfb7b7394bdd494aa4d8bcfa47f7b556.png)
 
 # Enumeation
 
 ## Port scans
 
-![fast_scan.png](../../_resources/bb22b11f2a494cfab69386290e57ec53.png)
+![fast_scan.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/bb22b11f2a494cfab69386290e57ec53.png)
 
 
-![detail_scan.png](../../_resources/316695b74f154f8faa8793232d5647e3.png)
+![detail_scan.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/316695b74f154f8faa8793232d5647e3.png)
 
 ### Information Gathering
 
-![author_page.png](../../_resources/8ae0d3e9aa8a4701bb3942252aade0fa.png)
+![author_page.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8ae0d3e9aa8a4701bb3942252aade0fa.png)
 
 The login form html code do not indicate any URL to process the data. That can only mean two things. First, the login page might just be a decoy or client script is excute to handle the login process. I searched for javascript files and found ash login credentials.
 
-![login_creds.png](../../_resources/ceaca8faecc849c598ebf2efbbf4efe8.png)
+![login_creds.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/ceaca8faecc849c598ebf2efbbf4efe8.png)
 
 The author wrote:
 
@@ -41,13 +39,13 @@ Add the domain names `hms.htb` to the system hosts file (`/etc/hosts`) to access
 
 
 
-![hosts_config_file.png](../../_resources/164b398a0e5240babe0bfaee1e2dd60b.png)
+![hosts_config_file.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/164b398a0e5240babe0bfaee1e2dd60b.png)
 
 
 OpenEMR is free and open-source software which is use to medical practice management. I browser to the admin page to get the version number and searched for known vulnerabilities.
 
 
-![openemr_admin_page.png](../../_resources/6576e1fef6dc4810aee5c00088efaa83.png)
+![openemr_admin_page.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/6576e1fef6dc4810aee5c00088efaa83.png)
 
 # Foothold
 
@@ -57,13 +55,13 @@ The code behind the authentification mechanism verify if the user has some sessi
 
 
 
-![login_page_openemr.png](../../_resources/67f463cda57a4294a4662fd9bfb26dcf.png)
+![login_page_openemr.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/67f463cda57a4294a4662fd9bfb26dcf.png)
 
 
  I clicked on the register button and modified the URL to access `http://hms.htb/portal/add_edit_event_user.php`.
  
 
-![add_edit_event_user_page.png](../../_resources/8be49b02060d4cb481bece57a4a17645.png)
+![add_edit_event_user_page.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/8be49b02060d4cb481bece57a4a17645.png)
 
 
 The `add_edit_event_user_page` is vulnerable to sql injection. Change the cookie header and execute the commmand below to get the credential of an OpenEMR user.
@@ -76,7 +74,7 @@ password: "$2;print "username: "$3}'
 The password found were hashed and stated with the characters `$2a$05` which indicate the password has been hashed with a Bcrypt algorithm.
 
 
-![openemr_admin_passwd.png](../../_resources/61449bead36c42acbd37e77d1ceae0f1.png)
+![openemr_admin_passwd.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/61449bead36c42acbd37e77d1ceae0f1.png)
 
 
 Now that I had valid OpenEMR user credentials I were able to make slight modification on the authenticated [remote code execution exploit](https://www.exploit-db.com/exploits/48515) I found earlier.
@@ -274,7 +272,7 @@ print (rev_shell.text)
 
 I open a port with netcat with the appropriate port number, execute the python exploit and got a shell.
 
-![foothold_shell.png](../../_resources/ee4b1dd21db54d5ea3d5c7dd87584047.png)
+![foothold_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/ee4b1dd21db54d5ea3d5c7dd87584047.png)
 
 # Privilege escalation
 
@@ -284,7 +282,7 @@ Once I got a shell, I gather information to elevate my privilege. I read the `/e
 
 
 
-![ash_shell.png](../../_resources/eef08fbf5ea84954828d6c391a65672c.png)
+![ash_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/eef08fbf5ea84954828d6c391a65672c.png)
 
 ## Luffy user
 
@@ -293,11 +291,11 @@ Memecache service was listening on the loopback interface (127.0.0.1:11211). Mem
 From ash shell I connected myself to memcache using Telnet (`telnet 127.0.0.1 11211`) and retrieve luffy credentials.
 
 
-![luffy_creds.png](../../_resources/d3a9dedcf1334981bf4f688f3216433c.png)
+![luffy_creds.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/d3a9dedcf1334981bf4f688f3216433c.png)
 
 I used ssh to get luffy shell.
 
-![luffy_shell.png](../../_resources/9c6eba55c7fe4a0a83d21b5d8e704b4e.png)
+![luffy_shell.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/9c6eba55c7fe4a0a83d21b5d8e704b4e.png)
 
 ## Root user
 
@@ -315,7 +313,7 @@ docker run -it -v /:/mnt ubuntu chroot /mnt sh
 Thanks for reading !
 
 # References
-- [Public OpenEMR pentest report](https://www.open-emr.org/wiki/images/1/11/Openemr_insecurity.pdf)
+- [Public OpenEMR pentest report](https://www.open-emr.org/wiki/imageshttps://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/Openemr_insecurity.pdf)
 - [OpenEMR version 5.0.1 authenticated RCE](https://www.exploit-db.com/exploits/48515)
 - [How to dump memcache](https://www.hackingarticles.in/penetration-testing-on-memcached-server/)
 - [Memcache enumeration](https://book.hacktricks.xyz/pentesting/11211-memcache)
