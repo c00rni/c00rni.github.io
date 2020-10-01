@@ -23,7 +23,7 @@ Cache is a machine on HackTheBox platoform with the IP address 10.10.10.188. Thi
 
 ### Information Gathering
 
-The login form html code do not indicate any URL to process the data. That can only mean two things. First, the login page might just be a decoy or client script is excute to handle the login process. I searched for javascript files and found ash login credentials.
+The html login form code doesn't indicate any URL to process the data. That can only mean two things. First, the login page might just be a decoy or client script is excute to handle the login process. I searched for javascript files and found ash login credentials.
 
 ![login_creds.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/ceaca8faecc849c598ebf2efbbf4efe8.png)
 
