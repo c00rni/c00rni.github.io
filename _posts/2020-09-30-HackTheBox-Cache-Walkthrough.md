@@ -7,7 +7,7 @@ tags: [enumeration, hackthebox, docker, memecache, bcrypt, su, johntheripper]
 comments: true
 ---
 
-Cache is a machine on HackTheBox platoform with the IP address 10.10.10.188. This machine is rated as medium by the community. As long each enueration phase was done conscientiously, this machine is fun and easy. Cache is vulnerable to multiple CVE; The first one being a sql injection wich allow me to get credential and execute a remote code execution exploit. The first normal user credential can be found in Javascript files. Credential of a second user can be found in memecache service memor and I used docker to elevate my privelege to root.	
+Cache is a machine on HackTheBox platform with the IP address 10.10.10.188. This machine is rated as medium by the community. As long each enueration phase was done conscientiously, this machine is fun and easy. Cache is vulnerable to multiple CVE; The first one being a sql injection wich allow me to get credential and execute a remote code execution exploit. The first normal user credential can be found in Javascript files. Credential of a second user can be found in memecache service memor and I used docker to elevate my privelege to root.	
 
 
 ![card_info.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/cfb7b7394bdd494aa4d8bcfa47f7b556.png)
