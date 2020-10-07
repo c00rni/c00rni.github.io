@@ -7,7 +7,7 @@ tags: [enumeration, hackthebox, docker, memecache, bcrypt, su, johntheripper]
 comments: true
 ---
 
-Cache is a machine on HackTheBox platform with the IP address 10.10.10.188. This machine is rated as medium by the community. As long each enueration phase was done conscientiously, this machine is fun and easy. Cache is vulnerable to multiple CVE; The first one being a sql injection wich allow me to get credential and execute a remote code execution exploit. The first normal user credential can be found in Javascript files. Credential of a second user can be found in memecache service memor and I used docker to elevate my privelege to root.	
+Cache is a machine on HackTheBox platform with the IP address 10.10.10.188. This machine is rated as medium by the community. As long each enumeration phase was done conscientiously, this machine is fun and easy. Cache is vulnerable to multiple CVE; The first one being a sql injection wich allowed me to get credentials and executed a remote code execution exploit. The first normal user credentials can be found in the website Javascript files. Credentials of a second user can be found in memecache service memory and I used docker to elevate my privelege to root.	
 
 
 ![card_info.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/cfb7b7394bdd494aa4d8bcfa47f7b556.png)
@@ -23,17 +23,17 @@ Cache is a machine on HackTheBox platform with the IP address 10.10.10.188. This
 
 ### Information Gathering
 
-The html login form code doesn't indicate any URL to process the data. That can only mean two things. First, the login page might just be a decoy or client script is excute to handle the login process. I searched for javascript files and found ash login credentials.
+The html login form code doesn't indicate any URL to process the data. That can only mean two things. First, the login page might just be a decoy or client's scripts are execute to handle the login process. I searched for javascript files and found ash login credentials.
 
 ![login_creds.png](https://raw.githubusercontent.com/c00rni/c00rni.github.io/master/_posts/_resources/ceaca8faecc849c598ebf2efbbf4efe8.png)
 
-The author wrote:
+The author wrote this on the contact page:
 
 *ASH is a Security Researcher (Threat Research Labs), Security Engineer. Hacker, Penetration Tester and Security blogger. He is Editor-in-Chief, Author & Creator of Cache. Check out his other projects like Cache: HMS(Hospital Management System)* 
 
-The index page hinted us Ash used the domain name `cache.htb` for his website and might have some other project host under the same top-level domain (htb).
+The index page hinted us Ash used the domain name `cache.htb` for his website and might have some other project (**HMS(Hospital Management System)**) host under the same top-level domain (htb).
 
-Add the domain names `hms.htb` to the system hosts file (`/etc/hosts`) to access HMS(Hospital Management System) project.
+I added the domain names `hms.htb` to the system hosts file (`/etc/hosts`) to access HMS project.
 
 
 
